@@ -1,0 +1,11 @@
+@import '../../styles/bulma.sass';
+
+.analysis-card {
+    background-color: $color-white;
+    border-radius: $radius !important;
+    display: block;
+}
+
+.tag.analysis-score-tag {
+    border-radius: $radius-small;
+}

@@ -1,0 +1,40 @@
+@import '../../styles/bulma.sass';
+
+.overlay-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+.action-sheet {
+    position: fixed;
+    bottom: -30px;
+    left: 0;
+    height: 400px;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 3;
+    border-radius: $radius-large;
+}
+
+.action-sheet-wrapper {
+    z-index: 2;
+}
+
+
+.button-clickable {
+    background-color: $color-gray-6;
+    border-radius: $radius;
+    .button-icon-holder img {
+        display:block;
+        max-height: 65px;
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

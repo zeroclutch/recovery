@@ -1,0 +1,25 @@
+@import '../../styles/bulma.sass';
+
+
+.is-floated-right { float: right; }
+.clear-both { clear: both; }
+
+.food-card {
+    background-color: $color-white;
+    border-radius: $radius !important;
+    display: block;
+}
+.food-card-food-name {
+    font-size: $size-5;
+    font-weight: bold;
+    color: $color-gray-2;
+}
+.food-card-food-calories {
+    color: $color-gray-3;
+    font-weight: bold;
+    float: right;
+}
+
+.tag.food-card-score-tag {
+    border-radius: $radius-small;
+}

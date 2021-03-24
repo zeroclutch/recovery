@@ -1,0 +1,9 @@
+@import '../../styles/bulma.sass';
+
+.button.add-item-button {
+    background: $gradient-primary;
+    border-radius: $radius;
+    display: block;
+    cursor: pointer;
+    line-height: 0;
+}

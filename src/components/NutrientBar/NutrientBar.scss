@@ -1,0 +1,30 @@
+@import '../../styles/bulma.sass';
+
+.bar {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    .bar-component {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .bar-background {
+        background-color: $color-gray-5;
+        border-radius: $radius;
+    }
+    .bar-progress, .bar-glow {
+        background: $gradient-error;
+        &.success {
+            background: $gradient-success;
+        }
+        border-radius: $radius;
+    }
+
+    .bar-glow {
+        filter: blur(5px);
+    }
+
+}

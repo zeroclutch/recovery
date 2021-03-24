@@ -1,0 +1,108 @@
+@charset "utf-8"
+@import './global.scss'
+
+// Set your brand colors
+$color-gray-1: rgba(42,45,49,1)
+$color-gray-2: rgb(67, 73, 79)
+$color-gray-3: rgb(111, 121, 130)
+$color-gray-4: rgb(161, 175, 189)
+$color-gray-5: rgba(202,213,224,1)
+$color-gray-6: rgba(232,239,245,1)
+$color-primary: rgba(238,89,124,1)
+$color-primary-alternate: rgba(248,208,217,1)
+$color-primary-dark: rgba(147,37,64,1)
+$color-secondary: rgba(89,211,238,1)
+$color-secondary-alternate: rgba(200,232,239,1)
+$color-secondary-dark: rgba(37,127,147,1)
+$color-green-1: rgba(57,133,101,1)
+$color-green-2: rgba(74,165,137,1)
+$color-green-3: rgba(199,239,214,1)
+$color-blue-1: rgba(57,90,133,1)
+$color-blue-2: rgba(91,155,238,1)
+$color-blue-3: rgba(199,216,239,1)
+$color-red-1: rgba(183,50,41,1)
+$color-red-2: rgba(238, 100, 91, 1)
+$color-red-3: rgba(239,202,199,1)
+$color-white: rgba(255,255,255,1)
+
+$gradient-primary: linear-gradient(99.27deg, #EE597C 0%, #AF83FF 50.89%, #59D3EE 100%)
+$gradient-secondary: linear-gradient(99.27deg, #EE597C 0%, #F8D0D9 100%)
+$gradient-tertiary: linear-gradient(99.27deg, #C8E8EF 0%, #E8EFF5 48.81%, #F8D0D9 100%)
+$gradient-grayscale: linear-gradient(99.27deg, #E8EFF5 0%, #CAD5E0 100%)
+$gradient-success: linear-gradient(279.09deg, #4AA589 0%, #81EAA8 100%)
+$gradient-error: linear-gradient(99.27deg, #F18B75 0%, #EE5B7E 100%)
+
+// Update Bulma's global variables
+// Colors
+
+
+// Fonts
+$family-sans-serif: 'Open Sauce One', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+$family-body: 'Open Sauce Sans', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+$size-1: 3rem
+$size-2: 2.25rem
+$size-3: 1.5rem
+$size-4: 1.125rem
+$size-5: 1rem
+$size-6: 1rem
+$size-7: 0.75rem
+
+$weight-black: 900
+
+// Colors
+$primary: $color-primary
+$primary-invert: $color-primary-alternate
+$primary-light: $color-primary-alternate
+$primary-dark: $color-primary-dark
+
+$info: $color-blue-2
+$info-invert: $color-blue-3
+$info-light: $color-blue-3
+$info-dark: $color-blue-1
+
+$success: $color-green-2
+$success-invert: $color-green-3
+$success-light: $color-green-3
+$success-dark: $color-green-1
+
+$danger: $color-red-2
+$danger-invert: $color-red-3
+$danger-light: $color-red-3
+$danger-dark: $color-red-1
+
+$black:         $color-gray-1
+$black-bis:     hsl(0, 0%, 7%)
+$black-ter:     $color-gray-2
+$grey-darker:   hsl(0, 0%, 21%)
+$grey-dark:     $color-gray-3
+$grey:          $color-gray-4
+$grey-light:    $color-gray-5
+$grey-lighter:  hsl(0, 0%, 86%)
+$grey-lightest: hsl(0, 0%, 93%)
+$white-ter:     $color-gray-6
+$white-bis:     hsl(0, 0%, 98%)
+$white:         $color-white
+
+$radius-small: 8px
+$radius: 16px
+$radius-large: 32px
+$radius-rounded: 100%
+
+// Spacing
+$spacing-values: ("0": 0, "1": 0.25rem, "2": 0.5rem, "3": 0.75rem, "4": 1rem, "5": 1.5rem, "6": 2rem)
+
+// Update some of Bulma's component variables
+$body-background-color: $color-gray-6
+
+$card-shadow: unset
+$card-background-color: $color-white
+
+// Import only what you need from Bulma
+@import '../../node_modules/bulma/sass/utilities/_all.sass'
+@import '../../node_modules/bulma/sass/base/_all.sass'
+@import "../../node_modules/bulma/sass/grid/_all.sass"
+@import '../../node_modules/bulma/sass/elements/_all.sass'
+@import '../../node_modules/bulma/sass/form/_all.sass'
+@import '../../node_modules/bulma/sass/components/_all.sass'
+@import '../../node_modules/bulma/sass/layout/_all.sass'
+@import '../../node_modules/bulma/sass/helpers/_all.sass'

@@ -1,0 +1,189 @@
+/* Fonts */
+@font-face {
+    font-family: 'Open Sauce One';
+    src: url('../assets/fonts/OpenSauceOne-BlackItalic.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceOne-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('../assets/fonts/OpenSauceSans-Bold.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce One';
+    src: url('../assets/fonts/OpenSauceOne-Black.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceOne-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce One';
+    src: url('../assets/fonts/OpenSauceOne-Regular.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceOne-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce One';
+    src: url('../assets/fonts/OpenSauceOne-Italic.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceOne-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('../assets/fonts/OpenSauceSans-BoldItalic.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceSans-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('../assets/fonts/OpenSauceSans-Italic.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceSans-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sauce Sans';
+    src: url('../assets/fonts/OpenSauceSans-Regular.woff2') format('woff2'),
+        url('../assets/fonts/OpenSauceSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+	--color-gray-1: rgba(42,45,49,1);
+	--color-gray-2: rgba(67,73,79,1);
+	--color-gray-3: rgba(111,121,130,1);
+	--color-gray-4: rgba(161,175,189,1);
+	--color-gray-5: rgba(202,213,224,1);
+	--color-gray-6: rgba(232,239,245,1);
+	--color-primary: rgba(238,89,124,1);
+	--color-primary-alternate: rgba(248,208,217,1);
+	--color-primary-dark: rgba(147,37,64,1);
+	--color-secondary: rgba(89,211,238,1);
+	--color-secondary-alternate: rgba(200,232,239,1);
+	--color-secondary-dark: rgba(37,127,147,1);
+	--color-green-1: rgba(57,133,101,1);
+	--color-green-2: rgba(74,165,137,1);
+	--color-green-3: rgba(199,239,214,1);
+	--color-blue-1: rgba(57,90,133,1);
+	--color-blue-2: rgba(91,155,238,1);
+	--color-blue-3: rgba(199,216,239,1);
+	--color-red-1: rgba(183,50,41,1);
+	--color-red-2: rgba(238,100,91,1);
+	--color-red-3: rgba(239,202,199,1);
+	--color-white: rgba(255,255,255,1);
+	
+	--gradient-primary: linear-gradient(99.27deg, #EE597C 0%, #AF83FF 50.89%, #59D3EE 100%);
+	--gradient-secondary: linear-gradient(99.27deg, #EE597C 0%, #F8D0D9 100%);
+	--gradient-tertiary: linear-gradient(99.27deg, #C8E8EF 0%, #E8EFF5 48.81%, #F8D0D9 100%);
+	--gradient-grayscale: linear-gradient(99.27deg, #E8EFF5 0%, #CAD5E0 100%);
+	--gradient-success: linear-gradient(279.09deg, #4AA589 0%, #81EAA8 100%);
+	--gradient-error: linear-gradient(99.27deg, #F18B75 0%, #EE5B7E 100%);
+	
+	font-size: 16px;
+}
+
+
+// Defaults
+html {
+    background-color: --color-primary;
+}
+
+.text-style-header-1 {
+	font-size:3rem;
+	font-family:"Open Sauce One";
+	font-weight:900;
+	font-style:normal;
+	line-height:125%;
+}
+
+.text-style-header-2 {
+	font-size:2.25rem;
+	font-family:"Open Sauce One";
+	font-weight:900;
+	font-style:normal;
+	line-height:125%;
+}
+.text-style-header-3 {
+	font-size:1.5rem;
+	font-family:"Open Sauce One";
+	font-weight:900;
+	font-style:normal;
+	line-height:125%;
+}
+.text-style-header-4 {
+	font-size:1.125rem;
+	font-family:"Open Sauce One";
+	font-weight:900;
+	font-style:normal;
+	line-height:125%;
+}
+.text-style-header-5 {
+	font-size:1rem;
+	font-family:"Open Sauce One";
+	font-weight:900;
+	font-style:normal;
+	line-height:125%;
+}
+.text-style-body {
+	font-size:1rem;
+	font-family:"Open Sauce Sans";
+	font-weight:normal;
+	font-style:normal;
+	line-height:125%;
+}
+.text-style-caption {
+	font-size:0.875rem;
+	font-family:"Open Sauce Sans";
+	font-weight:bold;
+	font-style:normal;
+	line-height:125%;
+}
+.text-style-label {
+	font-size:0.75rem;
+	font-family:"Open Sauce One";
+	font-weight:normal;
+	font-style:normal;
+	line-height:125%;
+}
+.text-style-label-bold {
+	font-size:0.75rem;
+	font-family:"Open Sauce One";
+	font-weight:bolder;
+	font-style:normal;
+	line-height:125%;
+}
+
+.is-floated-left {
+	float: left;
+}
+
+.is-floated-right {
+	float: right;
+}
+
+.is-cleared-both {
+	clear: both;
+}
