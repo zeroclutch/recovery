@@ -48,13 +48,18 @@ function App() {
   function handleUserItemUpdate(newItems) {
     setUserItems(newItems)
   }
-  function handleBarcodeChange(e) {
-    const imageFile = e.target.files[0]
-    FR.addEventListener("load", function() {
-      let newObject = URL.createObjectURL(imageFile)
-      console.log(FR.result)
-    })
-    FR.readAsDataURL(imageFile)
+  function handleBarcodeChange(base64) {
+    console.log(base64)
+    // After getting base64, send to backend (fetch backend)
+
+    // Do what we want with response
+
+    // const imageFile = e.target.files[0]
+    // FR.addEventListener("load", function() {
+    //   let newObject = URL.createObjectURL(imageFile)
+    //   console.log(FR.result)
+    // })
+    // FR.readAsDataURL(imageFile)
   }
 
   return (

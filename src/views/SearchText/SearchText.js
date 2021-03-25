@@ -36,14 +36,14 @@ class SearchText extends React.Component {
 
   getNutrient(searchResult, nutrient) {
     if(searchResult && searchResult.foodNutrients)
-      return searchResult.foodNutrients.find(n => n.nutrientName === 'Energy').value
+      return searchResult.foodNutrients.find(n => n.nutrientName === nutrient).value
       return '--'
     }
  
   render() {
     return (
       <div className="SearchText">
-        <Header title="Search" left="" right="Done"></Header>
+        <Header title="Search" left="" right="Done" leftLink="/settings" rightLink="/home"></Header>
         <div class="search-box p-5 has-text-centered">
           <form class="" onSubmit={this.search}>
             <input class="input is-small has-text-left" value={this.state.query} onChange={this.handleChange} placeholder="Search" />

@@ -53,7 +53,7 @@ class HomePage extends React.Component {
         {this.props.userItems.map(userItem => (
           <FoodCard />
         ))}
-        <Link to="/search/barcode"><ButtonAnalyze /></Link>
+        <Link to="/analysis"><ButtonAnalyze /></Link>
         {this.state.formInput.addingItem && <SearchActionSheet handleClick = {(e) => this.handleAddItem(e)} handleAddItem = {() => this.handleUserItem()}/>}
       </div>
     );

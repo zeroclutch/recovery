@@ -46,8 +46,10 @@ class Analysis extends React.Component {
             </div>
         </div>
 
-        {/* This should link back to /home */}
-        <ButtonAddItem />
+        {/* This should link back to /home 
+            If you want to change to just a customlink we customize, we can change this.
+        */}
+        <Link to="/home"><ButtonAddItem /></Link>
       </div>
     )
   }
