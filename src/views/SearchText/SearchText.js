@@ -14,6 +14,7 @@ class SearchText extends React.Component {
       query: '',
       results: [],
       confirmingItem: false,
+      confirmedItem: false,
       data: {}
     }
 
@@ -76,6 +77,7 @@ class SearchText extends React.Component {
     }
  
   render() {
+    console.log(this.state.data)
     return (
       <div className="SearchText">
         <Header title="Search" left=" " right="Done" leftLink="/settings" rightLink="/home"></Header>
@@ -96,7 +98,7 @@ class SearchText extends React.Component {
             data-fdcId={`${result.fdcId}`}
           />
         ))}
-        {this.state.confirmingItem && this.state.data != null && <ConfirmAddItem productData={this.state.data["product"]} handleConfirm={this.handleConfirm} handleCancel={this.handleCancel}></ConfirmAddItem>}
+        {this.state.confirmingItem && this.state.data != null && <ConfirmAddItem loading={false} productData={this.state.data["product"]} handleConfirm={this.handleConfirm} handleCancel={this.handleCancel}></ConfirmAddItem>}
       </div>
 
     )

@@ -10,7 +10,6 @@ function LandingPage(props) {
   return (
     <div className="LandingPage has-text-centered">
       <Link className="button is-primary" to="/home">Enter the app</Link>
-      <ConfirmAddItem nutriments={props.productNutriments}></ConfirmAddItem>
     </div>
   )
 }
