@@ -16,8 +16,6 @@ class Analysis extends React.Component {
     //   nutrients.push(this.props.initalUserNutriments[key])
     // })
     // let nutrients = []
-    console.log(this.props)
-    console.log(this.userInitialNutriments)
     return (
       <div className="Analysis">
         <Header title="Analysis" left=" " right=" "></Header>
@@ -27,20 +25,21 @@ class Analysis extends React.Component {
                 {
                   this.props.userInitialNutriments ?
                     Object.keys(this.props.userInitialNutriments).map((nutrient) => {
-                      console.log(nutrient)
+                      // console.log(nutrient)
                       let nutrient_name = nutrient.substring(0, nutrient.lastIndexOf("_"))
                       nutrient_name = nutrient_name.split('_').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ')
                       const { max, min, unit } = this.props.userInitialNutriments[nutrient]
                       var minCompleted = 0, maxCompleted = 0
                       if(this.props.userNutriments) {
-                        const { max_remaining, min_remaining, unit_remaining } = this.props.userNutriments[nutrient]
-                        console.log(min, min_remaining, this.props.userNutriments[nutrient])
+                        // console.log(min, min_remaining, this.props.userNutriments[nutrient])
                         minCompleted = min - this.props.userNutriments[nutrient]["min"]
                         maxCompleted = (max || 0) - (this.props.userNutriments[nutrient]["max"] || 0)
                         if(minCompleted % 1 !== 0) minCompleted = minCompleted.toFixed(1)
-                        console.log(minCompleted, maxCompleted)
+                        // console.log(minCompleted, maxCompleted)
                       }
-                      return <NutrientBar key={nutrient_name} completed={minCompleted} total={min} unit={unit} nutrient={nutrient_name} />
+                      let goal = (this.props.userInitialNutriments[nutrient]["min"] % 1 == 0) ? this.props.userInitialNutriments[nutrient]["min"] : this.props.userInitialNutriments[nutrient]["min"].toFixed(1)
+                      // if(min % 1 != 0) goamin.toFixed(1)
+                      return <NutrientBar key={nutrient_name} completed={minCompleted} total={goal} unit={unit} nutrient={nutrient_name} />
                     })
                    : <NutrientBar completed={0} total={1} unit={"g"} nutrient={"N/A"} />
                   }

@@ -65,7 +65,7 @@ function App() {
       userData.sex = 'Male' // Use Male for fallback calculations
     }
     console.log(settings)
-    calculateInitial(userData)
+    calculateInitial(userData, false)
   }
 
   function handleProductChange(newProductData) {
@@ -101,7 +101,7 @@ function App() {
     }).catch(console.log)
   }
 
-  function calculateInitial(settingsOverride) {
+  function calculateInitial(settingsOverride, isInital) {
     // Fetch initial data
     fetch(process.env.REACT_APP_API_ENDPOINT + '/calculate/initial', {
       method: 'POST',
@@ -113,92 +113,34 @@ function App() {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      setUserInitialNutriments(data)
-      setUserNutriments(data)
+      console.log(userNutriments)
+      console.log(userInitialNutriments)
+      setUserInitialNutriments(data) 
+      if(isInital) { 
+        setUserNutriments(data) 
+      }
+      else {
+        let newData = userNutriments
+        Object.keys(userNutriments).forEach(nutriment => {
+          // console.log(nutriment, userNutriments[nutriment]["min"], data[nutriment]["min"], userInitialNutriments[nutriment]["min"])
+          newData[nutriment]["min"] = (userNutriments[nutriment]["min"] || 0) + (data[nutriment]["min"] || 0) - (userInitialNutriments[nutriment]["min"] || 0)
+          newData[nutriment]["max"] = (userNutriments[nutriment]["max"] || 0) + (data[nutriment]["max"] || 0) - (userInitialNutriments[nutriment]["max"] || 0)
+          newData[nutriment]["unit"] = data[nutriment]["unit"]
+        })
+        console.log(newData)
+        setUserNutriments(newData)
+      }
     })
-    .catch(err => console.log('There was an error loading user data.'))
+    .catch(err => console.log('There was an error loading user data.', err))
   }
 
   useEffect(() => {
-    let initialUserSettings = {"sex": "Male", "weight": 60}
-    let initialUserNutriments = {
-      "calcium_remaining": {
-        "max": 1200,
-        "min": 1000,
-        "unit": "mg"
-      },
-      "calories_remaining": {
-        "max": 2350,
-        "min": 1750,
-        "unit": "kcal"
-      },
-      "iron_remaining": {
-        "min": 8.7,
-        "unit": "g"
-      },
-      "protein_remaining": {
-        "max": 165,
-        "min": 95,
-        "unit": "g"
-      },
-      "vitamin_a_remaining": {
-        "min": 900,
-        "unit": "mcg"
-      },
-      "vitamin_c_remaining": {
-        "min": 75,
-        "unit": "mg"
-      },
-      "vitamin_d_remaining": {
-        "min": 15,
-        "unit": "mcg"
-      },
-      "zinc_remaining": {
-        "min": 11,
-        "unit": "mg"
-      }
-    },
-    userNutriments = {
-      "calcium_remaining": {
-        "max": 0,
-        "min": 0,
-        "unit": "mg"
-      },
-      "calories_remaining": {
-        "max": 0,
-        "min": 0,
-        "unit": "kcal"
-      },
-      "iron_remaining": {
-        "min": 0,
-        "unit": "g"
-      },
-      "protein_remaining": {
-        "max": 0,
-        "min": 0,
-        "unit": "g"
-      },
-      "vitamin_a_remaining": {
-        "min": 0,
-        "unit": "mcg"
-      },
-      "vitamin_c_remaining": {
-        "min": 0,
-        "unit": "mg"
-      },
-      "vitamin_d_remaining": {
-        "min": 0,
-        "unit": "mcg"
-      },
-      "zinc_remaining": {
-        "min": 0,
-        "unit": "mg"
-      }
-    }
+    let initialUserSettings = {"sex": "Male", "weight": 60, "unit": "kg"}
+
     setUserSettings(initialUserSettings)
-    setUserInitialNutriments(initialUserNutriments)
-    setUserNutriments(userNutriments)
-    calculateInitial(initialUserSettings)
+    // setUserInitialNutriments(initialUserNutriments)
+    calculateInitial(initialUserSettings, true)
+    console.log(userInitialNutriments, userNutriments)
   }, [])
 
   return (
