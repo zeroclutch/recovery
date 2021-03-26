@@ -3,7 +3,7 @@ import './FoodCard.scss'
 
 function FoodCard(props) {
     return (
-        <div class="food-card m-4">
+        <div class="food-card m-4" onClick={props.handleSelectItem}>
             <div class="food-card-header px-5 py-4">
                     <div class="clear-both pb-2">
                         <span class="food-card-food-calories ">{props.calories || '380 cal.'}</span>

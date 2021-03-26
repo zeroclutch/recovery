@@ -10,17 +10,44 @@ class Analysis extends React.Component {
   constructor(props) {
       super(props)
   }
+
   render() {
+    // Object.keys(this.props.initalUserNutriments).forEach(function(key) {
+    //   nutrients.push(this.props.initalUserNutriments[key])
+    // })
+    // let nutrients = []
+    console.log(this.props)
+    console.log(this.userInitialNutriments)
     return (
       <div className="Analysis">
-        <Header title="Analysis"></Header>
+        <Header title="Analysis" left=" " right=" "></Header>
         <div class="analysis-card m-4 is-cleared-both">
             <div class="analysis-card-header px-5 py-4">
                 <div class="has-text-black is-size-3 has-text-weight-bold">Nutrient Progress</div>
-                <NutrientBar completed={300} total={200} unit="mg" nutrient="Calories" />
+                {
+                  this.props.userInitialNutriments ?
+                    Object.keys(this.props.userInitialNutriments).map((nutrient) => {
+                      console.log(nutrient)
+                      let nutrient_name = nutrient.substring(0, nutrient.lastIndexOf("_"))
+                      nutrient_name = nutrient_name.split('_').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(' ')
+                      const { max, min, unit } = this.props.userInitialNutriments[nutrient]
+                      var minCompleted = 0, maxCompleted = 0
+                      if(this.props.userNutriments) {
+                        const { max_remaining, min_remaining, unit_remaining } = this.props.userNutriments[nutrient]
+                        console.log(min, min_remaining, this.props.userNutriments[nutrient])
+                        minCompleted = min - this.props.userNutriments[nutrient]["min"]
+                        maxCompleted = (max || 0) - (this.props.userNutriments[nutrient]["max"] || 0)
+                        if(minCompleted % 1 !== 0) minCompleted = minCompleted.toFixed(1)
+                        console.log(minCompleted, maxCompleted)
+                      }
+                      return <NutrientBar key={nutrient_name} completed={minCompleted} total={min} unit={unit} nutrient={nutrient_name} />
+                    })
+                   : <NutrientBar completed={0} total={1} unit={"g"} nutrient={"N/A"} />
+                  }
+                {/* <NutrientBar completed={300} total={this.props.userInitialNutriments["calories_remaining"]} unit="mg" nutrient="Calories" />
                 <NutrientBar completed={100} total={124} unit="mcg" nutrient="Calcium" />
                 <NutrientBar completed={20} total={50} unit="g" nutrient="Vitamin C" />
-                <NutrientBar completed={40} total={11} unit=" cups" nutrient="Water" />
+                <NutrientBar completed={40} total={11} unit=" cups" nutrient="Water" /> */}
                 <div class="has-text-black is-size-3 has-text-weight-bold py-3">Your meals</div>
                 <div class="is-cleared-both">
                   <span class="tag-wrapper  is-floated-right">

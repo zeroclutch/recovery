@@ -47,12 +47,17 @@ class HomePage extends React.Component {
     console.log("USER ITEMS:", this.props.userItems)
     return ( 
       <div className="HomePage">
-        <Header title="Add Items"></Header>
+        <Header leftLink="/settings" title="Add Items"></Header>
         <ButtonAddItem handleClick = {(e) => this.handleAddItem(e)} />
         
-        {this.props.userItems.map(userItem => (
-          <FoodCard />
-        ))}
+        {this.props.userItems.map((userItem, index) => {
+          let product = userItem.product
+          return (<FoodCard key={index}
+            name={product.product_name || product.generic_name}
+            calories={`${product.nutriments.calories} ${product.units.calories}`}
+            nova={product.nova_group ? `${product.nova_group} NOVA` : `${product.nutriments.calcium}${product.units.calcium} calcium`}
+            nutriScore={product.nutriscore_grade ? `${product.nutriscore_grade.toUpperCase()} Nutri-Score` : `${product.nutriments.iron}${product.units.iron} iron`} />
+          )})}
         <Link to="/analysis"><ButtonAnalyze /></Link>
         {this.state.formInput.addingItem && <SearchActionSheet handleClick = {(e) => this.handleAddItem(e)} handleAddItem = {() => this.handleUserItem()}/>}
       </div>

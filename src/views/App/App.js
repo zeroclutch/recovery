@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router'
-import { Router } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
+
 // import logo from './logo.svg'
 import './App.scss'
 
@@ -14,7 +15,6 @@ import SearchText from '../SearchText/SearchText'
 import Settings from '../Settings/Settings'
 
 const history = createBrowserHistory()
-const FR = new FileReader();
 // import Analysis from './views/Analysis'
 // import Settings from './views/Settings'
 // import SearchBarcode from './views/SearchBarcode'
@@ -42,54 +42,193 @@ THEN: JSON with nutriments
 */
 
 function App() {
-  const [userItems, setUserItems] = useState([]) // May discard later
-  const [productNutriments, setProductNutriments] = useState([])
+  const [userItems, setUserItems] = useState([])
+  const [userSettings, setUserSettings] = useState({})
+  const [userNutriments, setUserNutriments] = useState({})
+  const [userInitialNutriments, setUserInitialNutriments] = useState({})
+  const [productData, setProductData] = useState({})
 
   function handleUserItemUpdate(newItems) {
     setUserItems(newItems)
   }
-  function handleBarcodeChange(base64) {
-    console.log(base64)
-    // After getting base64, send to backend (fetch backend)
 
-    // Do what we want with response
+  function handleUserSettingsUpdate(settings) {
+    function convertLbsToKg(lbs) {
+      return (lbs * 0.453592)
+    }
 
-    // const imageFile = e.target.files[0]
-    // FR.addEventListener("load", function() {
-    //   let newObject = URL.createObjectURL(imageFile)
-    //   console.log(FR.result)
-    // })
-    // FR.readAsDataURL(imageFile)
+    setUserSettings(settings)
+    let userData = Object.assign({}, settings)
+    if(userData.unit === 'lbs') {
+      userData.weight = convertLbsToKg(userData.weight)
+    } else if(userData.sex === 'Other') {
+      userData.sex = 'Male' // Use Male for fallback calculations
+    }
+    console.log(settings)
+    calculateInitial(userData)
   }
+
+  function handleProductChange(newProductData) {
+    updateUserNutriments(newProductData.type, newProductData.id || newProductData.code || newProductData.fdcid)
+    addUserItem(newProductData)
+  }
+
+  function addUserItem(newProductData) {
+    const currentUserItems = userItems.concat(newProductData)
+    setUserItems(currentUserItems)
+    console.log(currentUserItems)
+  }
+
+  function updateUserNutriments(type, id) {
+    const data = {
+      nutrients: userNutriments,
+      food: {
+        type,
+        id: `${id}`
+      }
+    }
+    fetch(process.env.REACT_APP_API_ENDPOINT + '/item/add', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(json => {
+      setUserNutriments(json)
+    }).catch(console.log)
+  }
+
+  function calculateInitial(settingsOverride) {
+    // Fetch initial data
+    fetch(process.env.REACT_APP_API_ENDPOINT + '/calculate/initial', {
+      method: 'POST',
+      body: JSON.stringify(settingsOverride || userSettings),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      setUserInitialNutriments(data)
+      setUserNutriments(data)
+    })
+    .catch(err => console.log('There was an error loading user data.'))
+  }
+
+  useEffect(() => {
+    let initialUserSettings = {"sex": "Male", "weight": 60}
+    let initialUserNutriments = {
+      "calcium_remaining": {
+        "max": 1200,
+        "min": 1000,
+        "unit": "mg"
+      },
+      "calories_remaining": {
+        "max": 2350,
+        "min": 1750,
+        "unit": "kcal"
+      },
+      "iron_remaining": {
+        "min": 8.7,
+        "unit": "g"
+      },
+      "protein_remaining": {
+        "max": 165,
+        "min": 95,
+        "unit": "g"
+      },
+      "vitamin_a_remaining": {
+        "min": 900,
+        "unit": "mcg"
+      },
+      "vitamin_c_remaining": {
+        "min": 75,
+        "unit": "mg"
+      },
+      "vitamin_d_remaining": {
+        "min": 15,
+        "unit": "mcg"
+      },
+      "zinc_remaining": {
+        "min": 11,
+        "unit": "mg"
+      }
+    },
+    userNutriments = {
+      "calcium_remaining": {
+        "max": 0,
+        "min": 0,
+        "unit": "mg"
+      },
+      "calories_remaining": {
+        "max": 0,
+        "min": 0,
+        "unit": "kcal"
+      },
+      "iron_remaining": {
+        "min": 0,
+        "unit": "g"
+      },
+      "protein_remaining": {
+        "max": 0,
+        "min": 0,
+        "unit": "g"
+      },
+      "vitamin_a_remaining": {
+        "min": 0,
+        "unit": "mcg"
+      },
+      "vitamin_c_remaining": {
+        "min": 0,
+        "unit": "mg"
+      },
+      "vitamin_d_remaining": {
+        "min": 0,
+        "unit": "mcg"
+      },
+      "zinc_remaining": {
+        "min": 0,
+        "unit": "mg"
+      }
+    }
+    setUserSettings(initialUserSettings)
+    setUserInitialNutriments(initialUserNutriments)
+    setUserNutriments(userNutriments)
+    calculateInitial(initialUserSettings)
+  }, [])
 
   return (
     <div class="app">
-    <Router history={history}>
+    <HashRouter history={history}>
       <Switch>
-      {/* Landing page for uninstalled users */}
-      <Route exact path="/">
-        <LandingPage />
-      </Route>
-      {/* App pages */}
-      <Route path="/home" >
-        <HomePage userItems={userItems} productNutriments = {productNutriments} handleUserItemUpdate={handleUserItemUpdate}/>
-      </Route>
-      <Route path="/analysis">
-        <Analysis />
-      </Route>
-      <Route path="/search/barcode">
-        <SearchBarcode handleChange = {handleBarcodeChange}/>
-      </Route>
-      <Route path="/settings">
-        <Settings/>
-      </Route>
-      
-      <Route path="/search/text">
-        <SearchText/>
-      </Route>
-    </Switch>
-  </Router>
-  </div>
+        {/* Landing page for uninstalled users */}
+        <Route exact path="/">
+          <LandingPage productData={productData} />
+        </Route>
+        {/* App pages */}
+        <Route path="/home" >
+          <HomePage userItems={userItems} userNutriments={userNutriments} handleUserItemUpdate={handleUserItemUpdate}/>
+        </Route>
+        <Route path="/analysis">
+          <Analysis userNutriments={userNutriments} userInitialNutriments={userInitialNutriments}/>
+        </Route>
+        <Route path="/search/barcode">
+          <SearchBarcode history={history} handleProductChange={handleProductChange} />
+        </Route>
+        <Route path="/settings">
+          <Settings userSettings={userSettings} handleUserSettingsUpdate={handleUserSettingsUpdate} />
+        </Route>
+        
+        <Route path="/search/text">
+          <SearchText history={history} handleProductChange={handleProductChange} />
+        </Route>
+      </Switch>
+    </HashRouter>
+    </div>
   )
 }
 
