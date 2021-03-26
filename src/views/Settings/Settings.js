@@ -8,7 +8,7 @@ function Settings(props) {
 
   function handleSexChange(e) { setSex(e.target.value); }
   function handleUnitChange(e) { setUnit(e.target.value); }
-  function handleWeightChange(e) { setWeight(e.target.value); }
+  function handleWeightChange(e) { setWeight(parseFloat(e.target.value)); }
 
 
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import barcodeIcon from '../../assets/images/barcode-icon.png'
 import searchIcon from '../../assets/images/search-icon.png'
@@ -22,11 +23,14 @@ class ConfirmAddItem extends Component {
                 <div class="overlay-background" onClick={this.props.handleCancel}>
                 </div>
                 <div class="action-sheet has-background-white p-5">
-                    <h2 class="text-style-header-4 my-2 has-text-black has-text-centered">{this.props.productData ? this.props.productData["product_name"] : "No item found."}</h2>
-                    <div class="button-list has-text-left">
-                        <div to='/search/barcode' class="button-clickable p-2 mt-5 is-mobile ">
-                        
-                        
+                    <h2 class="text-style-header-4 my-2 mb-3 has-text-black has-text-centered">{this.props.productData ? this.props.productData["product_name"] : "No item found."}</h2>
+                    <h2 class="text-style-header-5 my-2 ml-1 has-text-light-gray has-text-left">{this.props.productData ? this.props.productData["brands"] : "No brand name found."}</h2>
+                    <div class="is-flex is-flex-direction-row serving-quantity">
+                        <h2 class="text-style-header-5 ml-1 ">Serving Quantity:</h2>
+                        <h2 class="text-style-header-5 mr-2 serving-unit">{this.props.productData ? this.props.productData["serving_quantity"] + (this.props.productData["serving_quantity_unit"] ? this.props.productData["serving_quantity_unit"] : " units") : "N/A"}</h2>
+                    </div>
+                    <div class="button-list">
+                        <div to='/search/barcode' class="button-clickable p-3 mt-2 is-mobile">
                         {
                             (this.props.productData) ? 
                                 Object.keys(this.props.productData["nutriments"]).map(nutriment => {
@@ -40,7 +44,6 @@ class ConfirmAddItem extends Component {
                                                 <span class="is-floated-right text-style-header-5 nutriment-item-name">
                                                     {this.props.productData["nutriments"][nutriment] || 0} {this.props.productData["units"][nutriment] || ' units'}
                                                 </span>
-                                                <span class="is-cleared-both"></span>
                                             </div>
                                         )
                                     }
@@ -54,7 +57,7 @@ class ConfirmAddItem extends Component {
                                 <div onClick={this.props.handleCancel} class="is-half button is-light is-large is-danger">Cancel</div>
                             </div>
                             <div class="button-wrapper column has-text-right">
-                                <div onClick={this.props.handleConfirm} class="is-half button is-light is-large is-success">Confirm</div>
+                                <Link to="/home" onClick={this.props.handleConfirm} class="is-half button is-light is-large is-success">Confirm</Link>
                             </div>
                         </div>
                     </div>
