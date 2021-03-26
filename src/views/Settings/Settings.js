@@ -6,9 +6,11 @@ function Settings(props) {
   const [unit, setUnit] = useState('')
   const [weight, setWeight] = useState(0)
 
-  function handleSexChange(e) { setSex(e.target.value) }
-  function handleUnitChange(e) { setUnit(e.target.value) }
-  function handleWeightChange(e) { setWeight(e.target.value) }
+  function handleSexChange(e) { setSex(e.target.value); }
+  function handleUnitChange(e) { setUnit(e.target.value); }
+  function handleWeightChange(e) { setWeight(e.target.value); }
+
+
 
   function handleChange(e, setter) {
     setter(e.target.value)
@@ -23,7 +25,7 @@ function Settings(props) {
     setUnit('kg')
     setWeight(props.userSettings.weight)
     setSex(props.userSettings.sex)
-  })
+  }, [])
   
   return (
     <div class="settings-page">
@@ -39,11 +41,11 @@ function Settings(props) {
             <div class="field-body">
               <div class="field has-addons">
                 <div class="control">
-                  <input class="input" type="number" placeholder="Enter your weight" onChange={handleWeightChange} />
+                  <input class="input" type="number" placeholder="Enter your weight" onChange={handleWeightChange} value={weight}/>
                 </div>
                 <div class="control">
                   <span class="select">
-                    <select onChange={handleUnitChange}>
+                    <select onChange={handleUnitChange} value={unit}>
                       <option>lbs</option>
                       <option>kg</option>
                     </select>
@@ -61,7 +63,7 @@ function Settings(props) {
               <div class="field is-narrow">
                 <div class="control">
                   <div class="select" onChange={handleSexChange}>
-                    <select>
+                    <select value={sex}>
                       <option>Male</option>
                       <option>Female</option>
                       <option>Other</option>
