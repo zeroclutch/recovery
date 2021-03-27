@@ -1,18 +1,23 @@
 .header-hero {
     background-image: url('../../assets/images/hero-background.png');
-    min-height: 400px;
+    min-height: 100vh;
     background-size: cover;
 }
 
-.header-hero h1 {
+.header-hero .header-content {
     color: white;
     position: relative;
     left: 0;
-    top: 200px;
+    top: 50vh;
     transform: translateY(-50%);
-    font-size: 2rem;
-    font-weight: 900;
-    color: white;
+    font-size: 2.25rem;
+    .main-title {
+        font-weight: 900;
+    }
+    .subheading {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
     .glow {
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.8) ; 
     }
