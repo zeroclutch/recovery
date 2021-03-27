@@ -68,9 +68,17 @@ function App() {
     calculateInitial(userData, false)
   }
 
+
   function handleProductChange(newProductData) {
-    updateUserNutriments(newProductData.type, newProductData.id || newProductData.code || newProductData.fdcid)
+    updateUserNutriments('add', newProductData.type, newProductData.id || newProductData.code || newProductData.fdcid)
     addUserItem(newProductData)
+  }
+
+
+  function handleDeleteItem(index) {
+    let newProductData = userItems[index]
+    updateUserNutriments('delete', newProductData.type, newProductData.id || newProductData.code || newProductData.fdcid)
+    deleteUserItem(index)
   }
 
   function addUserItem(newProductData) {
@@ -79,7 +87,14 @@ function App() {
     console.log(currentUserItems)
   }
 
-  function updateUserNutriments(type, id) {
+  function deleteUserItem(index) {
+    const currentUserItems = [].concat(userItems)
+    currentUserItems.splice(index, 1)
+    setUserItems(currentUserItems)
+    console.log(currentUserItems)
+  }
+
+  function updateUserNutriments(addOrDelete, type, id) {
     const data = {
       nutrients: userNutriments,
       food: {
@@ -87,7 +102,7 @@ function App() {
         id: `${id}`
       }
     }
-    fetch(process.env.REACT_APP_API_ENDPOINT + '/item/add', {
+    fetch(process.env.REACT_APP_API_ENDPOINT + '/item/' + addOrDelete, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -153,7 +168,7 @@ function App() {
         </Route>
         {/* App pages */}
         <Route path="/home" >
-          <HomePage userItems={userItems} userNutriments={userNutriments} handleUserItemUpdate={handleUserItemUpdate}/>
+          <HomePage handleDeleteItem={handleDeleteItem} userItems={userItems} userNutriments={userNutriments} handleUserItemUpdate={handleUserItemUpdate}/>
         </Route>
         <Route path="/analysis">
           <Analysis userNutriments={userNutriments} userInitialNutriments={userInitialNutriments}/>

@@ -4,6 +4,7 @@
 
 .header-padder {
     height: 72px;
+	background: $color-primary;
 }
 
 .header:before {
@@ -23,5 +24,6 @@
     top: 0;
     z-index: 200;
     width: 100%;
-    background: rgba(238, 89, 124, 1);
+    background: rgba(238, 89, 124, 0.65);
+	backdrop-filter: blur(10px);
 }

@@ -1,0 +1,22 @@
+.header-hero {
+    background-image: url('../../assets/images/hero-background.png');
+    min-height: 400px;
+    background-size: cover;
+}
+
+.header-hero h1 {
+    color: white;
+    position: relative;
+    left: 0;
+    top: 200px;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+    .glow {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8) ; 
+    }
+    .glass {
+        opacity: 0.8;
+    }
+}

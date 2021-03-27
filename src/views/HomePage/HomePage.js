@@ -37,6 +37,7 @@ class HomePage extends React.Component {
       }
     }))
   }
+
   handleUserItem = () => {
     let userItems = ["Strawberry Cheesecake"]
     userItems.push(...this.props.userItems)
@@ -53,9 +54,12 @@ class HomePage extends React.Component {
         {this.props.userItems.map((userItem, index) => {
           let product = userItem.product
           return (<FoodCard key={index}
+            index={index}
+            handleDeleteItem={this.props.handleDeleteItem}
+            isDeletable={true}
             name={product.product_name || product.generic_name}
-            calories={`${product.nutriments.calories} ${product.units.calories}`}
-            nova={product.nova_group ? `${product.nova_group} NOVA` : `${product.nutriments.calcium}${product.units.calcium} calcium`}
+            calories={`${product.serving_quantity || '--'} ${product.serving_quantity_unit}` || 'amt.'}
+            nova={product.nova_group ? `${product.nova_group} NOVA` : `${product.nutriments.calcium} ${product.units.calories}`}
             nutriScore={product.nutriscore_grade ? `${product.nutriscore_grade.toUpperCase()} Nutri-Score` : `${product.nutriments.iron}${product.units.iron} iron`} />
           )})}
         <Link to="/analysis"><ButtonAnalyze /></Link>

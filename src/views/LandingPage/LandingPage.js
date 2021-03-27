@@ -1,7 +1,7 @@
 import React from 'react'
 // import logo from './logo.svg'
 import '../../styles/bulma.sass'
-import './LandingPage.css'
+import './LandingPage.scss'
 import { Link } from 'react-router-dom'
 import ConfirmAddItem from "../../components/ConfirmAddItem/ConfirmAddItem";
 
@@ -9,7 +9,13 @@ import ConfirmAddItem from "../../components/ConfirmAddItem/ConfirmAddItem";
 function LandingPage(props) {
   return (
     <div className="LandingPage has-text-centered">
-      <Link className="button is-primary" to="/home">Enter the app</Link>
+      <div class="header-hero">
+        <h1 class="main-title">
+          <span class="glass">re</span>
+          <span class="glow">cov</span>
+          <span class="glass">ery</span>
+        </h1>
+      </div>
     </div>
   )
 }
