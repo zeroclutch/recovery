@@ -48,7 +48,7 @@ class HomePage extends React.Component {
     console.log("USER ITEMS:", this.props.userItems)
     return ( 
       <div className="HomePage">
-        <Header leftLink="/settings" title="Add Items"></Header>
+        <Header leftLink="/settings" right=" " title="Add Items"></Header>
         <ButtonAddItem handleClick = {(e) => this.handleAddItem(e)} />
         
         {this.props.userItems.map((userItem, index) => {

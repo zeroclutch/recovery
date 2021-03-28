@@ -9,7 +9,7 @@ class ButtonAddItem extends Component {
         
         return (
             <div class="button is-primary has-text-weight-bold add-item-button has-text-white has-text-centered p-6 m-4" onClick={this.props.handleClick}>
-                + Add new item
+                { this.props.textOverride || '+ Add new item' } 
             </div>
         )
     }

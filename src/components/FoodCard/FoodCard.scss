@@ -28,7 +28,7 @@
         left: 0;
         top: 0;
         width: 100%;
-        transition: 0.2s left ease-out;
+        transition: 0.1s left ease-out;
     }
 
     .food-delete-button {
@@ -41,7 +41,7 @@
         text-align: center;
         left: calc(100% + 1.5rem);
         height: 100%;
-        transition: 0.2s left;
+        transition: 0.1s left;
         line-height: 100%;
         span {
             display: block;

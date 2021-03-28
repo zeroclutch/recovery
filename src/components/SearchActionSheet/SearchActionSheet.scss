@@ -19,6 +19,12 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 3;
     border-radius: $radius-large;
+    animation: insertSearch 0.2s ease-in-out;
+}
+
+@keyframes insertSearch {
+    0% { bottom: -430px; }
+    100% { bottom: -30px; }
 }
 
 .action-sheet-wrapper {
