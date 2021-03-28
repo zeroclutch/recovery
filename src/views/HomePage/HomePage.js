@@ -58,9 +58,9 @@ class HomePage extends React.Component {
             handleDeleteItem={this.props.handleDeleteItem}
             isDeletable={true}
             name={product.product_name || product.generic_name}
-            calories={`${product.serving_quantity || '--'} ${product.serving_quantity_unit}` || 'amt.'}
-            nova={product.nova_group ? `${product.nova_group} NOVA` : `${product.nutriments.calcium} ${product.units.calories}`}
-            nutriScore={product.nutriscore_grade ? `${product.nutriscore_grade.toUpperCase()} Nutri-Score` : `${product.nutriments.iron}${product.units.iron} iron`} />
+            calories={`${product.serving_quantity || '--'} ${product.serving_quantity_unit || 'amt.'}`}
+            nova={product.nova_group ? `${product.nova_group} NOVA` : `${product.nutriments.calories} ${product.units.calories}`}
+            nutriScore={product.nutriscore_grade ? `${product.nutriscore_grade.toUpperCase()} Nutri-Score` : `${product.nutriments.proteins}${product.units.proteins} protein`} />
           )})}
         <Link to="/analysis"><ButtonAnalyze /></Link>
         {this.state.formInput.addingItem && <SearchActionSheet handleClick = {(e) => this.handleAddItem(e)} handleAddItem = {() => this.handleUserItem()}/>}

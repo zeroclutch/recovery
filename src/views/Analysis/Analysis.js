@@ -12,10 +12,24 @@ class Analysis extends React.Component {
   }
 
   render() {
-    // Object.keys(this.props.initalUserNutriments).forEach(function(key) {
-    //   nutrients.push(this.props.initalUserNutriments[key])
-    // })
-    // let nutrients = []
+    console.log(this.props.userNutriments)
+    let percentComplete = this.props.userNutriments["calories_remaining"] != null ?
+    Math.floor((1 - (this.props.userNutriments["calories_remaining"]["min"] / this.props.userInitialNutriments["calories_remaining"]["min"])) * 100) : 0
+    let calStatement = "";
+    if(percentComplete >= 100) calStatement = "Great job!"
+    else if(percentComplete >= 50) calStatement = "Getting there!"
+    else {
+      calStatement = "Get started!"
+    }
+    let proteinComplete = this.props.userNutriments["protein_remaining"] != null ? 
+    Math.floor((1 - (this.props.userNutriments["protein_remaining"]["min"] / this.props.userInitialNutriments["protein_remaining"]["min"])) * 100) : 0
+    let proteinStatement = "";
+    console.log(proteinComplete)
+    if(proteinComplete >= 100) proteinStatement = "Bodybuilder status!"
+    else if(proteinComplete >= 50) proteinStatement = "Getting big!"
+    else {
+      proteinStatement = "We all start somewhere!"
+    }
     return (
       <div className="Analysis">
         <Header title="Analysis" left=" " right=" "></Header>
@@ -49,22 +63,22 @@ class Analysis extends React.Component {
                 <NutrientBar completed={40} total={11} unit=" cups" nutrient="Water" /> */}
                 <div class="has-text-black is-size-3 has-text-weight-bold py-3">Your meals</div>
                 <div class="is-cleared-both">
-                  <span class="tag-wrapper  is-floated-right">
-                    <span class="tag px-5 food-card-score-tag is-medium is-success is-light">
-                        2 NOVA
+                  <span class="tag-wrapper has-text-centered is-floated-right">
+                    <span class={`tag px-2 food-card-score-tag is-medium is-light ${percentComplete >= 50 ? 'is-success' : 'is-danger'}`}>
+                      {percentComplete + "% Calories"}
                     </span>
                     <br />
                     <div class="has-text-centered">
-                      <span class="text-style-label-bold has-text-centered">Healthy!</span>
+                      <span class="text-style-label-bold has-text-centered">{calStatement}</span>
                     </div>
                   </span>
-                  <span class="tag-wrapper is-floated-left">
-                    <span class="tag px-5 food-card-score-tag is-medium is-danger is-light">
-                        A Nutri-Score
+                  <span class="tag-wrapper has-text-centered is-floated-left">
+                    <span class={`tag px-2 food-card-score-tag is-medium is-light ${proteinComplete >= 50 ? 'is-success' : 'is-danger'}`}>
+                      {proteinComplete + "% Protein"}
                     </span>
                     <br />
                     <div class="has-text-centered">
-                      <span class="text-style-label-bold has-text-centered">Healthy!</span>
+                      <span class="text-style-label-bold has-text-centered">{proteinStatement}</span>
                     </div>
                   </span>
                 </div>

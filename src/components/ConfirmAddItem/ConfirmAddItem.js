@@ -42,7 +42,7 @@ class ConfirmAddItem extends Component {
                                                     {nutriment_name}
                                                 </span>
                                                 <span class="is-floated-right text-style-body nutriment-item-name">
-                                                    {this.props.productData["nutriments"][nutriment].toPrecision(2) || 0} {this.props.productData["units"][nutriment] || ' units'}
+                                                    {this.props.productData["nutriments"][nutriment] || 0} {this.props.productData["units"][nutriment] || ' units'}
                                                 </span>
                                             </div>
                                         )
