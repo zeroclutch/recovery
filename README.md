@@ -1,3 +1,7 @@
+<p style="text-align: center;">
+<img style="padding: 10px" src="https://raw.githubusercontent.com/tanhuynh226/hackla/main/images/Logo-1.png">
+</p>
+
 # Recovery
 
 Homepage: [recoveryapp.netlify.app](https://recoveryapp.netlify.app/)
